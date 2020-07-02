@@ -1,0 +1,33 @@
+descriptor-schema-version: "2.5"
+
+info:
+  name: GPS Client application
+  description: Sample Application that makes use of GPS service
+  version: "1.0.0"
+  author-link: "http://www.cisco.com"
+  author-name: "Cisco Systems"
+
+app:
+  # Indicate app type (vm, paas, lxc etc.,)
+  cpuarch: "x86_64"
+  type: docker
+
+  depends-on:
+    packages:
+      -
+        name: "IOxGPS"
+        version: "1.0.0"
+
+  resources:
+    profile: c1.tiny
+    oauth: [OauthClient]
+
+    network:
+     -
+       interface-name: eth0
+
+  # Specify runtime and startup
+  startup:
+    rootfs: rootfs.tar
+    target: ["/usr/share/gpsclientapp/gpsclientapp.sh start"]
+  
