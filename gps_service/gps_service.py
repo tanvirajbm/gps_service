@@ -93,6 +93,7 @@ async def run(loop):
 
     async def get_config_handler(msg):
         global topic
+        global gps_interval_sec
         set_gps_interval_sec()                                                                     
         config={"gps_interval_sec":gps_interval_sec,"topic":topic}
         newmsg={"result":{"model": {"message":json.dumps(config) }}}
